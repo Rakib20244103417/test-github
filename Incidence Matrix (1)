@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, e;
+    cout << "Enter number of vertices: ";
+    cin >> n;
+    cout << "Enter number of edges: ";
+    cin >> e;
+
+    // Incidence matrix: rows = vertices, columns = edges
+    // We'll use 1-based indexing for vertices and edges
+    int inc[101][101];
+    // Initialize to 0
+    for(int i = 1; i <= n; i++) {
+        for(int j = 1; j <= e; j++) {
+            inc[i][j] = 0;
+        }
+    }
+
+    cout << "Enter the edges (u -> v):" << endl;
+    for(int k = 1; k <= e; k++) {
+        int u, v;
+        cin >> u >> v;
+        // u -> v is a directed edge
+        inc[u][k] = +1;
+        inc[v][k] = -1;
+    }
+
+    cout << "\nDirected Incidence Matrix:\n";
+    for(int i = 1; i <= n; i++) {
+        for(int j = 1; j <= e; j++) {
+            cout << inc[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
